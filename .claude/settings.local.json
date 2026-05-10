@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./gradlew assembleDebug *)",
+      "Bash(adb devices *)",
+      "Bash(adb install *)",
+      "Bash(adb shell *)",
+      "Bash(adb logcat *)",
+      "Bash(adb pull *)",
+      "Bash(sips *)",
+      "Bash(python3 -c ' *)",
+      "Bash(adb exec-out *)",
+      "WebSearch"
+    ]
+  }
+}

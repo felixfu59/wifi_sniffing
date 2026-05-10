@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0A0A"
+    android:paddingHorizontal="16dp"
+    android:paddingTop="12dp"
+    android:paddingBottom="16dp"
+    tools:context=".MainActivity">
+
+    <!-- Top bar: WiFi selector + Scan speed -->
+    <Spinner
+        android:id="@+id/wifiSpinner"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/spinner_bg"
+        android:dropDownVerticalOffset="48dp"
+        android:paddingStart="14dp"
+        android:paddingEnd="30dp"
+        android:popupBackground="#181818"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/scanSpeedSpinner"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/scanSpeedSpinner"
+        android:layout_width="88dp"
+        android:layout_height="44dp"
+        android:background="@drawable/spinner_bg"
+        android:dropDownVerticalOffset="48dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="24dp"
+        android:popupBackground="#181818"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/wifiSpinner"
+        app:layout_constraintBottom_toBottomOf="@+id/wifiSpinner" />
+
+    <!-- Center circle -->
+    <FrameLayout
+        android:id="@+id/circleContainer"
+        android:layout_width="190dp"
+        android:layout_height="190dp"
+        app:layout_constraintTop_toBottomOf="@+id/wifiSpinner"
+        app:layout_constraintBottom_toTopOf="@+id/trendSection"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginVertical="16dp">
+
+        <View
+            android:id="@+id/circleBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/circle_indicator_bg" />
+
+        <View
+            android:id="@+id/circleFill"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/circle_fill_bg" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvSignalStrength"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--"
+                android:textColor="@android:color/white"
+                android:textSize="54sp"
+                android:fontFamily="sans-serif-light"
+                android:letterSpacing="-0.03" />
+
+            <TextView
+                android:id="@+id/tvSignalLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="dBm"
+                android:textColor="#55FFFFFF"
+                android:textSize="13sp"
+                android:layout_marginTop="0dp"
+                android:fontFamily="sans-serif-medium"
+                android:letterSpacing="0.06" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <!-- Trend row: arrow + delta + proximity -->
+    <LinearLayout
+        android:id="@+id/trendSection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="6dp"
+        app:layout_constraintTop_toBottomOf="@+id/circleContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/signalBarContainer">
+
+        <TextView
+            android:id="@+id/tvTrendArrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="22sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginEnd="6dp" />
+
+        <TextView
+            android:id="@+id/tvTrendDelta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#80FFFFFF"
+            android:textSize="14sp"
+            android:fontFamily="monospace"
+            android:layout_marginEnd="16dp" />
+
+        <TextView
+            android:id="@+id/tvProximity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="13sp"
+            android:fontFamily="sans-serif-medium" />
+    </LinearLayout>
+
+    <!-- Signal strength bar -->
+    <LinearLayout
+        android:id="@+id/signalBarContainer"
+        android:layout_width="0dp"
+        android:layout_height="6dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        app:layout_constraintTop_toBottomOf="@+id/trendSection"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/cardDetails">
+
+        <View android:id="@+id/bar1" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginEnd="3dp" android:background="#22FFFFFF" />
+        <View android:id="@+id/bar2" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginEnd="3dp" android:background="#22FFFFFF" />
+        <View android:id="@+id/bar3" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginEnd="3dp" android:background="#22FFFFFF" />
+        <View android:id="@+id/bar4" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginEnd="3dp" android:background="#22FFFFFF" />
+        <View android:id="@+id/bar5" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#22FFFFFF" />
+    </LinearLayout>
+
+    <!-- Details card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardDetails"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:cardBackgroundColor="#111111"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:strokeColor="#15FFFFFF"
+        app:strokeWidth="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="6dp">
+                <TextView
+                    android:layout_width="64dp"
+                    android:layout_height="wrap_content"
+                    android:text="SSID"
+                    android:textColor="#45FFFFFF"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium" />
+                <TextView
+                    android:id="@+id/tvSsid"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="--"
+                    android:textColor="#D0FFFFFF"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="6dp">
+                <TextView
+                    android:layout_width="64dp"
+                    android:layout_height="wrap_content"
+                    android:text="BSSID"
+                    android:textColor="#45FFFFFF"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium" />
+                <TextView
+                    android:id="@+id/tvBssid"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="--"
+                    android:textColor="#D0FFFFFF"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="6dp">
+                <TextView
+                    android:layout_width="64dp"
+                    android:layout_height="wrap_content"
+                    android:text="Frequency"
+                    android:textColor="#45FFFFFF"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium" />
+                <TextView
+                    android:id="@+id/tvFrequency"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="--"
+                    android:textColor="#D0FFFFFF"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="6dp">
+                <TextView
+                    android:layout_width="64dp"
+                    android:layout_height="wrap_content"
+                    android:text="Security"
+                    android:textColor="#45FFFFFF"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium" />
+                <TextView
+                    android:id="@+id/tvSecurity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="--"
+                    android:textColor="#D0FFFFFF"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="6dp">
+                <TextView
+                    android:layout_width="64dp"
+                    android:layout_height="wrap_content"
+                    android:text="Link Speed"
+                    android:textColor="#45FFFFFF"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium" />
+                <TextView
+                    android:id="@+id/tvLinkSpeed"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="--"
+                    android:textColor="#D0FFFFFF"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="64dp"
+                    android:layout_height="wrap_content"
+                    android:text="IP Address"
+                    android:textColor="#45FFFFFF"
+                    android:textSize="11sp"
+                    android:fontFamily="sans-serif-medium" />
+                <TextView
+                    android:id="@+id/tvIpAddress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="--"
+                    android:textColor="#D0FFFFFF"
+                    android:textSize="12sp"
+                    android:fontFamily="monospace" />
+            </LinearLayout>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
