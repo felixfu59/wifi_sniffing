@@ -282,9 +282,13 @@ public class MainActivity extends AppCompatActivity {
         WifiInfo wifiInfo = wifiManager.getConnectionInfo();
 
         if (wifiInfo.getNetworkId() == -1) {
-            tvSignalStrength.setText("--");
-            tvSignalLabel.setText(getString(R.string.no_wifi_connected));
-            setCircleColor(R.color.signal_bad);
+            // Only show "not connected" if no network is selected; otherwise
+            // keep the scan data already shown by refreshScanResults/updateSpinner.
+            if (selectedBssid == null) {
+                tvSignalStrength.setText("--");
+                tvSignalLabel.setText(getString(R.string.no_wifi_connected));
+                setCircleColor(R.color.signal_bad);
+            }
         } else {
             // Only update center display + details for the connected WiFi,
             // unless user has selected a different network from spinner
