@@ -212,6 +212,7 @@ public class MainActivity extends AppCompatActivity {
                 startMonitoring();
             }
         }
+    }
 
     private boolean hasLocationPermission() {
         return ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
